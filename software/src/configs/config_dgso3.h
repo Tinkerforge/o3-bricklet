@@ -1,8 +1,7 @@
 /* o3-bricklet
  * Copyright (C) 2019 Olaf Lüke <olaf@tinkerforge.com>
  *
- * config_custom_bootstrapper.h: XMC bootstrapper configurations for
- *                               O3 Bricklet
+ * config_dgso3.h: Config for DGS-O3 sensor
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,23 +19,27 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#ifndef CONFIG_CUSTOM_BOOTSTRAPPER_H
-#define CONFIG_CUSTOM_BOOTSTRAPPER_H
+#ifndef CONFIG_DGSO3_H
+#define CONFIG_DGS03_H
 
-#define BOOTSTRAPPER_STATUS_LED_PIN P1_0
-#define BOOTSTRAPPER_USIC_CHANNEL   USIC0_CH1
-#define BOOTSTRAPPER_PAGE_SIZE      256
-#define BOOTSTRAPPER_FLASH_START    0x10001000
-#define BOOTSTRAPPER_FLASH_SIZE     (64*1024)
+#include "xmc_common.h"
+#include "xmc_gpio.h"
 
-#define BOOTSTRAPPER_USIC           XMC_UART0_CH1
-#define BOOTSTRAPPER_RX_PIN         P1_3
-#define BOOTSTRAPPER_RX_INPUT       XMC_USIC_CH_INPUT_DX0
-#define BOOTSTRAPPER_RX_SOURCE      0b000 // DX0A
+#define DGSO3_USIC_CHANNEL        USIC1_CH1
+#define DGSO3_USIC                XMC_UART1_CH1
 
-#define BOOTSTRAPPER_TX_PIN         P1_2
-#define BOOTSTRAPPER_TX_PIN_AF      (XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT7 | P1_2_AF_U0C1_DOUT0)
+#define DGSO3_RX_PIN              P2_13
+#define DGSO3_RX_INPUT            XMC_USIC_CH_INPUT_DX0
+#define DGSO3_RX_SOURCE           0b011 // DX0D
 
-#define BOOTSTRAPPER_BMI_WITH_CAN   1
+#define DGSO3_TX_PIN              P2_12
+#define DGSO3_TX_PIN_AF           (XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT7 | P2_12_AF_U1C1_DOUT0)
+
+#define DGSO3_SERVICE_REQUEST_RX  2  // receive
+#define DGSO3_SERVICE_REQUEST_TX  3  // transfer
+
+#define DGSO3_IRQ_RX              11
+#define DGSO3_IRQ_RX_PRIORITY     0
+#define DGSO3_IRQCTRL_RX          XMC_SCU_IRQCTRL_USIC1_SR2_IRQ11
 
 #endif

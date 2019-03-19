@@ -28,15 +28,18 @@
 #include "bricklib2/hal/system_timer/system_timer.h"
 #include "bricklib2/logging/logging.h"
 #include "communication.h"
+#include "dgso3.h"
 
 int main(void) {
 	logging_init();
 	logd("Start O3 Bricklet\n\r");
 
 	communication_init();
+	dgso3_init();
 
 	while(true) {
 		bootloader_tick();
 		communication_tick();
+		dgso3_tick();
 	}
 }

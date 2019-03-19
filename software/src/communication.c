@@ -25,6 +25,8 @@
 #include "bricklib2/protocols/tfp/tfp.h"
 #include "bricklib2/utility/callback_value.h"
 
+#include "dgso3.h"
+
 CallbackValue_uint16_t callback_value_o3;
 
 
@@ -38,10 +40,6 @@ BootloaderHandleMessageResponse handle_message(const void *message, void *respon
 }
 
 
-
-
-
-
 bool handle_o3_callback(void) {
 	return handle_callback_value_callback_uint16_t(&callback_value_o3, FID_CALLBACK_O3);
 }
@@ -51,8 +49,7 @@ void communication_tick(void) {
 }
 
 void communication_init(void) {
-	// TODO: Add proper functions
-	callback_value_init_uint16_t(&callback_value_o3, NULL);;
+	callback_value_init_uint16_t(&callback_value_o3, dgso3_get_o3);
 
 	communication_callback_init();
 }
